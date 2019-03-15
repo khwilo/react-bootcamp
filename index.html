@@ -13,10 +13,21 @@
     <div id="app"></div>
 
     <script type="text/babel">
+        const FriendsList = (props) => {
+            return (
+                <ul>
+                    {props.list.map((name) => (
+                        <li>{name}</li>
+                    ))}
+                </ul>
+            );
+        };
+
         const App = () => {
+            const friends = ['Caleb', 'John', 'Allan']
             return (
                 <div>
-                    Hello React World!
+                    <FriendsList list={friends} />
                 </div>
             );
         };
