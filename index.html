@@ -13,22 +13,10 @@
     <div id="app"></div>
 
     <script type="text/babel">
-        const name = "Khwilo";
-        const handle = "@khwilowatai"
-
-        const NameComponent = (props) => {
-            return <h1>{props.name}</h1>;
-        };
-
-        const HandleComponent = (props) => {
-            return <h3>{props.handle}</h3>;
-        };
-
         const App = () => {
             return (
-                <div id="container">
-                    <NameComponent name={name} />
-                    <HandleComponent handle={handle} />
+                <div>
+                    Hello React World!
                 </div>
             );
         };
