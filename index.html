@@ -38,12 +38,13 @@
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this);
                 this.updateInput = this.updateInput.bind(this);
                 this.handleAddFriend = this.handleAddFriend.bind(this);
+                this.handleRemoveAllFriends = this.handleRemoveAllFriends.bind(this);
             }
 
             handleAddFriend() {
                 this.setState((currentState) => {
                     return {
-                        friends: currentState.friends.concat([this.state.input]),
+                        friends: currentState.friends.concat([currentState.input]),
                         input: ''
                     }
                 });
@@ -53,6 +54,14 @@
                 this.setState((currentState) => {
                     return {
                         friends: currentState.friends.filter((friend) => friend !== name)
+                    }
+                });
+            }
+
+            handleRemoveAllFriends() {
+                this.setState((currentState) => {
+                    return {
+                        friends: currentState.friends.splice(0, currentState.length)
                     }
                 });
             }
@@ -73,6 +82,9 @@
                             onChange={this.updateInput}
                         />
                         <button onClick={this.handleAddFriend}>Submit</button>
+                        <p>
+                            <button onClick={this.handleRemoveAllFriends}>Clear All</button>
+                        </p>
                         <FriendsList
                             list={this.state.friends}
                             onRemoveFriend={this.handleRemoveFriend}
