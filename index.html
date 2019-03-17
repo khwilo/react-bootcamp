@@ -15,15 +15,31 @@
     <script type="text/babel">
         const FriendsList = (props) => {
             return (
-                <ul>
-                    {props.list.map((name) => (
-                        <li key={name}>
-                            <span>{name}</span>
-                            <button onClick={() => props.onRemoveFriend(name)}>Remove</button>
-                            <button onClick={() => props.onDeactivateFriend(name)}>Deactivate</button>
-                        </li>
-                    ))}
-                </ul>
+                <React.Fragment>
+                    <h2>Active Friends</h2>
+                    <ul>
+                        {props.list.map((name) => (
+                            <li key={name}>
+                                <span>{name}</span>
+                                <button onClick={() => props.onRemoveFriend(name)}>Remove</button>
+                                <button onClick={() => props.onDeactivateFriend(name)}>Deactivate</button>
+                            </li>
+                        ))}
+                    </ul>
+                </React.Fragment>
+            );
+        };
+
+        const InActiveFriendsList = (props) => {
+            return (
+                <React.Fragment>
+                    <h2>Inactive Friends</h2>
+                    <ul>
+                        {props.list.map((name) => (
+                            <li key={name}>{name}</li>
+                        ))}
+                    </ul>
+                </React.Fragment>
             );
         };
 
@@ -34,7 +50,7 @@
                 this.state = {
                     friends: ['Caleb', 'John', 'Allan'],
                     input: '',
-                    inactiveFriends: ''
+                    inactiveFriends: []
                 };
 
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this);
@@ -102,6 +118,7 @@
                             onRemoveFriend={this.handleRemoveFriend}
                             onDeactivateFriend={this.handleDeactivateFriend}
                         />
+                        <InActiveFriendsList list={this.state.inactiveFriends} />
                     </div>
                 );
             }
