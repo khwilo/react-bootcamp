@@ -15,7 +15,7 @@
     <script type="text/babel">
         const FriendsList = (props) => {
             return (
-                <React.Fragment>
+                <div>
                     <h2>Active Friends</h2>
                     <ul>
                         {props.list.map((name) => (
@@ -26,13 +26,13 @@
                             </li>
                         ))}
                     </ul>
-                </React.Fragment>
+                </div>
             );
         };
 
         const InActiveFriendsList = (props) => {
             return (
-                <React.Fragment>
+                <div>
                     <h2>Inactive Friends</h2>
                     <ul>
                         {props.list.map((name) => (
@@ -42,7 +42,7 @@
                             </li>
                         ))}
                     </ul>
-                </React.Fragment>
+                </div>
             );
         };
 
