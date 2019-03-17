@@ -36,7 +36,10 @@
                     <h2>Inactive Friends</h2>
                     <ul>
                         {props.list.map((name) => (
-                            <li key={name}>{name}</li>
+                            <li key={name}>
+                                <span>{name}</span>
+                                <button onClick={() => props.onActivateFriend(name)}>Activate</button>
+                            </li>
                         ))}
                     </ul>
                 </React.Fragment>
@@ -58,6 +61,7 @@
                 this.handleAddFriend = this.handleAddFriend.bind(this);
                 this.handleRemoveAllFriends = this.handleRemoveAllFriends.bind(this);
                 this.handleDeactivateFriend = this.handleDeactivateFriend.bind(this);
+                this.handleActivateFriend = this.handleActivateFriend.bind(this);
             }
 
             handleAddFriend() {
@@ -94,6 +98,15 @@
                 });
             }
 
+            handleActivateFriend(name) {
+                this.setState((currentState) => {
+                    return {
+                        inactiveFriends: currentState.inactiveFriends.filter((friend) => friend !== name),
+                        friends: currentState.friends.concat([name])
+                    };
+                });
+            }
+
             updateInput(e) {
                 const value = e.target.value
 
@@ -118,7 +131,10 @@
                             onRemoveFriend={this.handleRemoveFriend}
                             onDeactivateFriend={this.handleDeactivateFriend}
                         />
-                        <InActiveFriendsList list={this.state.inactiveFriends} />
+                        <InActiveFriendsList
+                            list={this.state.inactiveFriends}
+                            onActivateFriend={this.handleActivateFriend}
+                        />
                     </div>
                 );
             }
