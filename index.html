@@ -84,7 +84,8 @@
             handleRemoveAllFriends() {
                 this.setState((currentState) => {
                     return {
-                        friends: currentState.friends.splice(0, currentState.length)
+                        friends: currentState.friends.splice(0, currentState.length),
+                        inactiveFriends: currentState.inactiveFriends.splice(0, currentState.length)
                     }
                 });
             }
