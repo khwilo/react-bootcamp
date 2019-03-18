@@ -16,6 +16,6 @@ React bootcamp tutorials by [Tyler McGinnis](https://github.com/tylermcginnis).
 The bootcamp is divided into the following sections:  
 1. [Day One](https://github.com/khwilo/react-bootcamp/tree/bootcamp-d1)  
 2. [Day Two](https://github.com/khwilo/react-bootcamp/tree/bootcamp-d2)  
-3. [Day Three]()  
+3. [Day Three](https://github.com/khwilo/react-bootcamp/tree/bootcamp-d3)  
 4. [Day Four]()  
 
