@@ -19,11 +19,11 @@
                     const friends = [
                         {
                             name: "Ryan",
-                            active: true
+                            active: false
                         },
                         {
                             name: "Babel",
-                            active: true
+                            active: false
                         },
                         {
                             name: "Leo",
@@ -106,7 +106,7 @@
 
                 API.fetchFriends()
                 .then((friends) => {
-                    console.log("FRIENDS: ", friends);
+                    this.setState({ friends });
                 });
             }
 
