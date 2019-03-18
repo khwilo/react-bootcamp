@@ -7,6 +7,9 @@ React bootcamp tutorials by [Tyler McGinnis](https://github.com/tylermcginnis).
 1. Creating and using components  
 2. Using props to pass data  
 3. JSX syntax  
+4. Lifting up state  
+5. Binding functions   
+6. Passing methods as properties in components  
 
 ## Sections
 
