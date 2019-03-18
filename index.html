@@ -50,6 +50,34 @@
     </script>
 
     <script type="text/babel">
+        class Loading extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    text: "Loading"
+                }
+            }
+
+            componentDidMount() {
+                const stopper = this.state.text + "...";
+
+                window.setInterval(() => {
+                    this.state.text === stopper
+                        ? this.setState({ text: "Loading" })
+                        : this.setState((currentState) => {
+                            return {
+                                text: currentState.text + "."
+                            }
+                        })
+                }, 300);
+            }
+
+            render() {
+                return <p>{this.state.text}</p>
+            }
+        }
+
         const ActiveFriends = (props) => {
             return (
                 <div>
@@ -169,7 +197,7 @@
                 console.log("--render--");
 
                 if (this.state.loading === true) {
-                    return <h1>LOADING</h1>;
+                    return <Loading />;
                 }
 
                 return (
