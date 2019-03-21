@@ -72,13 +72,41 @@
             );
         };
 
+        const ListRepos = (props) => {
+            return (
+                <div>
+                    <ul style={{ display: "flex", flexWrap: "wrap" }}>
+                        {props.list.map((item) => (
+                            <li key={item.name} style={{ listStyleType: "none" }}>
+                                <ul style={{ margin: "20px" }}>
+                                    <li><a href={item.html_url} target="_blank">{item.name}</a></li>
+                                    <li>@{item.owner.login}</li>
+                                    <li>{item.stargazers_count} stars</li>
+                                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+
         class App extends React.Component {
             constructor(props) {
                 super(props);
 
                 this.state = {
-                    loading: false
+                    loading: false,
+                    repos: []
                 }
+            }
+
+            componentDidMount() {
+                API.fetchPopularRepos("all")
+                .then((item) => {
+                    this.setState({
+                        repos: item
+                    });
+                });
             }
 
             render() {
@@ -90,6 +118,7 @@
                     <div>
                         <PopularRepos />
                         <h1 style={{ textAlign: "center" }}>all</h1>
+                        <ListRepos list={this.state.repos}/>
                     </div>
                 );
             }
