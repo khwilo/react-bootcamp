@@ -59,14 +59,14 @@
             }
         }
 
-        const PopularRepos = () => {
+        const NavRepos = (props) => {
+            const languages = ["all", "javascript", "ruby", "python"];
             return (
                 <div>
                     <ul>
-                        <li>all</li>
-                        <li>javascript</li>
-                        <li>ruby</li>
-                        <li>Python</li>
+                        {languages.map((language) => (
+                            <li>{language}</li>
+                        ))}
                     </ul>
                 </div>
             );
@@ -96,12 +96,13 @@
 
                 this.state = {
                     loading: false,
-                    repos: []
+                    repos: [],
+                    language: "all"
                 }
             }
 
             componentDidMount() {
-                API.fetchPopularRepos("all")
+                API.fetchPopularRepos(this.state.language)
                 .then((item) => {
                     this.setState({
                         repos: item
@@ -116,8 +117,8 @@
 
                 return (
                     <div>
-                        <PopularRepos />
-                        <h1 style={{ textAlign: "center" }}>all</h1>
+                        <NavRepos languageType={this.state.language} />
+                        <h1 style={{ textAlign: "center" }}>{this.state.language}</h1>
                         <ListRepos list={this.state.repos}/>
                     </div>
                 );
