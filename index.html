@@ -59,16 +59,16 @@
             }
         }
 
-        const NavRepos = (props) => {
+        const Nav = (props) => {
             const languages = ["all", "javascript", "ruby", "python"];
             return (
-                <div>
+                <nav>
                     <ul>
                         {languages.map((language) => (
-                            <li>{language}</li>
+                            <li key={language} onClick={() => props.onSelectLanguage(language)}>{language}</li>
                         ))}
                     </ul>
-                </div>
+                </nav>
             );
         };
 
@@ -95,18 +95,36 @@
                 super(props);
 
                 this.state = {
-                    loading: false,
+                    loading: true,
                     repos: [],
-                    language: "all"
+                    activeLanguage: "all"
                 }
+
+                this.handleSelectLanguage = this.handleSelectLanguage.bind(this);
+                this.fetchRepos = this.fetchRepos.bind(this);
             }
 
             componentDidMount() {
-                API.fetchPopularRepos(this.state.language)
-                .then((item) => {
+                this.fetchRepos(this.state.activeLanguage);
+            }
+
+            fetchRepos(language) {
+                this.setState({
+                    loading: true
+                });
+
+                API.fetchPopularRepos(language)
+                .then((repos) => {
                     this.setState({
-                        repos: item
-                    });
+                        repos: repos,
+                        loading: false
+                    })
+                });
+            }
+
+            handleSelectLanguage(languageType) {
+                this.setState({
+                    activeLanguage: languageType
                 });
             }
 
@@ -117,9 +135,14 @@
 
                 return (
                     <div>
-                        <NavRepos languageType={this.state.language} />
-                        <h1 style={{ textAlign: "center" }}>{this.state.language}</h1>
-                        <ListRepos list={this.state.repos}/>
+                        <Nav onSelectLanguage={this.handleSelectLanguage} />
+                        {this.state.loading === true
+                            ? <Loading />
+                            : <div>
+                                <h1 style={{ textAlign: "center" }}>{this.state.activeLanguage}</h1>
+                                <ListRepos list={this.state.repos}/>
+                            </div>
+                        }
                     </div>
                 );
             }
