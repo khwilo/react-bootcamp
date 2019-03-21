@@ -76,9 +76,9 @@
             return (
                 <div>
                     <ul style={{ display: "flex", flexWrap: "wrap" }}>
-                        {props.list.map((item) => (
-                            <li key={item.name} style={{ listStyleType: "none" }}>
-                                <ul style={{ margin: "20px" }}>
+                        {props.repos.map((item) => (
+                            <li key={item.name} style={{ listStyleType: "none", margin: "20px" }}>
+                                <ul>
                                     <li><a href={item.html_url} target="_blank">{item.name}</a></li>
                                     <li>@{item.owner.login}</li>
                                     <li>{item.stargazers_count} stars</li>
@@ -106,6 +106,13 @@
 
             componentDidMount() {
                 this.fetchRepos(this.state.activeLanguage);
+            }
+
+            componentDidUpdate(prevProps, prevState) {
+                console.log("UPDATING");
+                if (prevState.activeLanguage !== this.state.activeLanguage) {
+                    this.fetchRepos(this.state.activeLanguage);
+                }
             }
 
             fetchRepos(language) {
@@ -140,7 +147,7 @@
                             ? <Loading />
                             : <div>
                                 <h1 style={{ textAlign: "center" }}>{this.state.activeLanguage}</h1>
-                                <ListRepos list={this.state.repos}/>
+                                <ListRepos repos={this.state.repos}/>
                             </div>
                         }
                     </div>
