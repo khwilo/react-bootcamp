@@ -24,7 +24,7 @@ const Topics = ({ match }) => {
 
                 <hr />
 
-                <Route path={`${match.url}/:topicId`} component={Topic} />
+                <Route path={`${match.path}/:topicId`} component={Topic} />
             </div>
         </BrowserRouter>
     );
