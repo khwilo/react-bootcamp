@@ -25,6 +25,9 @@ const Topics = ({ match }) => {
                 <hr />
 
                 <Route path={`${match.path}/:topicId`} component={Topic} />
+                <Route exact path={match.path} render={() => {
+                    return <h3>Please select a topic</h3>;
+                }}/>
             </div>
         </BrowserRouter>
     );
