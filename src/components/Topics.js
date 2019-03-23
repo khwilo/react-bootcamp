@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
-const Topic = () => {
-    return <div>Topic</div>;
+const Topic = ({ match }) => {
+    return <h3>{match.params.topicId}</h3>;
 };
 
 const Topics = () => {
@@ -24,7 +24,7 @@ const Topics = () => {
 
                 <hr />
 
-                <Route path="/topics/rendering" component={Topic} />
+                <Route path="/topics/:topicId" component={Topic} />
                 <Route path="/topics/components" component={Topic} />
                 <Route path="/topics/props-v-state" component={Topic} />
             </div>
